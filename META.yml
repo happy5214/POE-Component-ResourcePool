@@ -1,0 +1,19 @@
+--- #YAML:1.0
+name:                POE-Component-ResourcePool
+version:             0.01
+abstract:            ~
+license:             ~
+author:              ~
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    Moose:                         0.37
+    MooseX::POE:                   0.07
+    POE:                           0
+    Set::Object:                   1.20
+    Test::use::ok:                 0
+    Tie::RefHash:                  0
+    Tie::RefHash::Weak:            0.08
+meta-spec:
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

@@ -1,0 +1,8 @@
+- testing
+	- weak_queue
+	- multiple pools
+	- edge cases (queue a request twice, dismiss twice, etc)
+	- update hinting
+	- refcount_pending, refcount_allocated
+- request tracking resources
+	- token bucket
