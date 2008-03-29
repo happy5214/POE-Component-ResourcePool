@@ -10,7 +10,7 @@ use Tie::RefHash::Weak;
 
 #use MooseX::Types::Set::Object;
 
-our $VERSION = "0.01";
+our $VERSION = "0.02";
 
 # nested pools?
 # with qw(POE::Component::ResourcePool::Resource);
@@ -58,7 +58,7 @@ sub DEMOLISH {
 
 	# the extra checks are because in global destruction these values are
 	# sometimes already gone
-	foreach my $resource ( grep { defined }values %{ $self->resources || return } ) {
+	foreach my $resource ( grep { defined } values %{ $self->resources || return } ) {
 		$resource->unregister_pool($self);
 	}
 }

@@ -1,4 +1,4 @@
-algorithm
+Changes
 lib/POE/Component/ResourcePool.pm
 lib/POE/Component/ResourcePool/Request.pm
 lib/POE/Component/ResourcePool/Resource.pm
