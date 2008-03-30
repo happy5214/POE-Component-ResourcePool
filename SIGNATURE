@@ -14,13 +14,13 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 746f6a7f84b16595676347ef1da9a8c21b7fb647 Changes
+SHA1 d19c73564f3fecf9b809aed9ffc42991f5f5c63b Changes
 SHA1 1079f2b3806bdbd6a6e4c795ff9b650d15f59057 MANIFEST
 SHA1 ddb918d4e02cc06f4b9fe77adeca65403f8fdd56 MANIFEST.SKIP
-SHA1 d408780a7c2eb3bf1229dfa7a10d2dfbfd44b501 META.yml
+SHA1 7a9f9178a409bbb0af14cd898ba0a913adb41c82 META.yml
 SHA1 849704d5eb7452ea17ae6921b9fc0626e2461b7b Makefile.PL
 SHA1 ba6091bc83d25ad13231b7ea4ef868b0ae387538 TODO
-SHA1 8910912a871e30dab1f33392e7ea07ca7dece4af lib/POE/Component/ResourcePool.pm
+SHA1 4b9b125c75ac5092036d2ad1a1cd5d9580190ed7 lib/POE/Component/ResourcePool.pm
 SHA1 b5a1b42d5e7634c747c8f3f6ac92d0369d9c9cd5 lib/POE/Component/ResourcePool/Request.pm
 SHA1 95ffc4b02cab353e3db963786278739f04bcc385 lib/POE/Component/ResourcePool/Resource.pm
 SHA1 9daa1da4e6df4cc8a942b1c4cac53a37c87522e1 lib/POE/Component/ResourcePool/Resource/Collection.pm
@@ -33,7 +33,7 @@ SHA1 153f79e8922e42c7b28292920996b77d728ca817 t/fallback.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.7 (Darwin)
 
-iD8DBQFH7qtpVCwRwOvSdBgRAt2EAJ49aBw3zsOCJ+SL0jexWZdRGqyYCwCeKwXE
-nZFz3UTgd8olMkHVsEcLrUQ=
-=ZlKN
+iD8DBQFH74hyVCwRwOvSdBgRAuZhAKCIcAorAtYHzVUhH5XCq432HOdEPQCgw7Uc
+b45IW77cjt3zsfaJe4jxGYY=
+=l0kp
 -----END PGP SIGNATURE-----

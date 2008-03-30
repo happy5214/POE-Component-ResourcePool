@@ -10,10 +10,12 @@ use Tie::RefHash::Weak;
 
 #use MooseX::Types::Set::Object;
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 # nested pools?
 # with qw(POE::Component::ResourcePool::Resource);
+
+use POE::Component::ResourcePool::Resource; # load type constraint
 
 use POE::Component::ResourcePool::Request;
 
@@ -127,7 +129,7 @@ sub resource_updated {
 
 	my @ready = $self->_unblock_resource( $resource, @requests );
 
-	$self->yield( requests_ready => @ready );
+	$self->call( requests_ready => @ready );
 }
 
 sub pending_requests {
