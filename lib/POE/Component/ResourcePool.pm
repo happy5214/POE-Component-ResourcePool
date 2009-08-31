@@ -10,7 +10,7 @@ use Tie::RefHash::Weak;
 
 #use MooseX::Types::Set::Object;
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 # nested pools?
 # with qw(POE::Component::ResourcePool::Resource);
@@ -49,6 +49,8 @@ has refcount_allocated => (
 
 sub BUILD {
 	my $self = shift;
+
+	$self->MooseX::POE::Aliased::BUILD(@_);
 
 	foreach my $resource ( values %{ $self->resources } ) {
 		$resource->register_pool($self);
@@ -405,7 +407,7 @@ sub _try_allocating {
 		$output_params{$resource_name} = $resource->finalize_allocation( $self, $request, @{ $allocations{$resource_name} } );
 	}
 
-	$request->results(\%output_params);
+	$request->_results(\%output_params);
 
 	$request->invoke_callback( pool => $self, %output_params );
 

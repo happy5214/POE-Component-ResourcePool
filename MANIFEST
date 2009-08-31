@@ -12,6 +12,5 @@ t/00_use.t
 t/basic.t
 t/collection.t
 t/fallback.t
-TODO
 META.yml                                 Module meta-data (added by MakeMaker)
 SIGNATURE                                Public-key signature (added by MakeMaker)
