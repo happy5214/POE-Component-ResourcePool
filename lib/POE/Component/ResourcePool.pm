@@ -126,7 +126,7 @@ sub resource_updated {
 	my ( $self, $resource, @requests ) = @_;
 
 	unless ( @requests ) {
-		@requests = $self->_requests_by_resource->{$resource}->members;
+		@requests = $self->_requests_for_resource($resource);
 	}
 
 	my @ready = $self->_unblock_resource( $resource, @requests );
@@ -139,7 +139,7 @@ sub pending_requests {
 
 	if ( $resource ) {
 		$resource = $self->resources->{$resource} unless ref $resource;
-		return $self->_requests_for_resource($resource)->members;
+		return $self->_requests_for_resource($resource);
 	} else {
 		return keys %{ $self->_resources_by_request };
 	}
@@ -251,7 +251,7 @@ sub _remove_from_queue {
 sub _requests_for_resource {
 	my ( $self, $resource ) = @_;
 
-	$self->_requests_by_resource->{$resource};
+	$self->_requests_by_resource->{$resource}->members;
 }
 
 sub _resource_sets_for_request {
