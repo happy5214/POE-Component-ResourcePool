@@ -6,8 +6,8 @@ use Moose;
 with 'POE::Component::ResourcePool::Resource';
 
 has resources => (
-	isa => "ArrayRef[POE::Component::ResourcePool::Resource]",
-	is  => "rw",
+	isa => 'ArrayRef[POE::Component::ResourcePool::Resource]',
+	is  => 'rw',
 	required => 1,
 	auto_deref => 1,
 );

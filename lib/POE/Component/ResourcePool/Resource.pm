@@ -13,11 +13,11 @@ sub could_allocate {
 	return 1;
 }
 
-requires "try_allocating";
+requires 'try_allocating';
 
-requires "finalize_allocation";
+requires 'finalize_allocation';
 
-requires "free_allocation";
+requires 'free_allocation';
 
 sub forget_request {
 	my ( $self, $pool, $request ) = @_;
@@ -37,14 +37,14 @@ sub notify_all_pools {
 }
 
 has _registered_pools => (
-	#isa => "Set::Object",
-	is  => "ro",
+	#isa => 'Set::Object',
+	is  => 'ro',
 	init_arg => undef,
 	default  => sub { Set::Object::Weak->new },
 	handles => {
-		registered_pools => "members",
-		register_pool    => "insert",
-		unregister_pool  => "remove",
+		registered_pools => 'members',
+		register_pool    => 'insert',
+		unregister_pool  => 'remove',
 	}
 );
 

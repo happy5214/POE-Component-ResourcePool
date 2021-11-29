@@ -10,7 +10,7 @@ use Tie::RefHash::Weak;
 
 #use MooseX::Types::Set::Object;
 
-our $VERSION = "0.04";
+our $VERSION = '0.04';
 
 # nested pools?
 # with qw(POE::Component::ResourcePool::Resource);
@@ -24,26 +24,26 @@ with qw(MooseX::POE::Aliased);
 sub spawn { shift->new(@_) }
 
 has resources => (
-	isa => "HashRef[POE::Component::ResourcePool::Resource]",
-	is  => "ro",
+	isa => 'HashRef[POE::Component::ResourcePool::Resource]',
+	is  => 'ro',
 	required => 1,
 );
 
 has weak_queue => (
-	isa => "Bool",
-	is  => "ro",
+	isa => 'Bool',
+	is  => 'ro',
 	default => 0,
 );
 
 has refcount_pending => (
-	isa => "Bool",
-	is  => "ro",
+	isa => 'Bool',
+	is  => 'ro',
 	default => 1,
 );
 
 has refcount_allocated => (
-	isa => "Bool",
-	is  => "ro",
+	isa => 'Bool',
+	is  => 'ro',
 	default => 0,
 );
 
@@ -68,14 +68,14 @@ sub DEMOLISH {
 }
 
 has request_class => (
-	isa => "ClassName",
-	is  => "rw",
-	default => "POE::Component::ResourcePool::Request",
+	isa => 'ClassName',
+	is  => 'rw',
+	default => 'POE::Component::ResourcePool::Request',
 );
 
 has params => (
-	isa => "HashRef[HashRef]",
-	is  => "ro",
+	isa => 'HashRef[HashRef]',
+	is  => 'ro',
 	init_arg => undef,
 	default => sub { Tie::RefHash::Weak::fieldhash my %h },
 );
@@ -117,7 +117,7 @@ sub queue {
 
 	$self->_queue_request($request);
 
-	$poe_kernel->refcount_increment( $request->session_id, __PACKAGE__ . "::pending_requests" ) if $self->refcount_pending;
+	$poe_kernel->refcount_increment( $request->session_id, __PACKAGE__ . '::pending_requests' ) if $self->refcount_pending;
 
 	$self->yield( new_request => $request );
 }
@@ -176,8 +176,8 @@ sub shutdown { shift->clear_alias }
 
 # keyed by request
 has _allocations => (
-	isa => "HashRef[HashRef[ArrayRef]]",
-	is  => "ro",
+	isa => 'HashRef[HashRef[ArrayRef]]',
+	is  => 'ro',
 	init_arg => undef,
 	default => sub { Tie::RefHash::Weak::fieldhash my %h },
 );
@@ -185,15 +185,15 @@ has _allocations => (
 
 # these attributes and methods implement the qeueue
 has _requests_by_resource => (
-	#isa => "HashRef[Set::Object[POE::Component::ResourcePool::Request]]",
-	is  => "ro",
+	#isa => 'HashRef[Set::Object[POE::Component::ResourcePool::Request]]',
+	is  => 'ro',
 	init_arg => undef,
 	default  => sub { tie my %h, 'Tie::RefHash'; \%h },
 );
 
 has _resources_by_request => (
-	#isa => "HashRef[HashRef[Set::Object[POE::Component::ResourcePool::Resource]]]",
-	is  => "ro",
+	#isa => 'HashRef[HashRef[Set::Object[POE::Component::ResourcePool::Resource]]]',
+	is  => 'ro',
 	init_arg => undef,
 	lazy_build => 1,
 );
@@ -201,7 +201,7 @@ has _resources_by_request => (
 sub _build__resources_by_request {
 	my $self = shift;
 
-	tie my %h, $self->weak_queue ? "Tie::RefHash:Weak" : "Tie::RefHash";
+	tie my %h, $self->weak_queue ? 'Tie::RefHash:Weak' : 'Tie::RefHash';
 
 	return \%h;
 }
@@ -235,7 +235,7 @@ sub _remove_from_queue {
 
 	return unless exists $self->_resources_by_request->{$request};
 
-	$poe_kernel->refcount_decrement( $request->session_id, __PACKAGE__ . "::pending_requests" ) if $self->refcount_pending;
+	$poe_kernel->refcount_decrement( $request->session_id, __PACKAGE__ . '::pending_requests' ) if $self->refcount_pending;
 
 	my @resources = $self->_all_resources_for_request($request);
 
@@ -310,7 +310,7 @@ sub _validate_request_params {
 	my $resources = $self->resources;
 
 	if ( my @missing = grep { not exists $resources->{$_} } keys %$params ) {
-		croak "request $request has parameters for which no resource can be found: " . join ", ", @missing;
+		croak "request $request has parameters for which no resource can be found: " . join ', ', @missing;
 	}
 
 	my @failed;
@@ -323,7 +323,7 @@ sub _validate_request_params {
 	}
 
 	if ( @failed ) {
-		croak "The following resources rejected $request: " . join  ", ", @failed;
+		croak "The following resources rejected $request: " . join  ', ', @failed;
 	}
 }
 
@@ -345,7 +345,7 @@ event requests_ready => sub {
 sub _free_allocations {
 	my ( $self, $request ) = @_;
 
-	$poe_kernel->refcount_decrement( $request->session_id, __PACKAGE__ . "::allocated_requests" ) if $self->refcount_allocated;
+	$poe_kernel->refcount_decrement( $request->session_id, __PACKAGE__ . '::allocated_requests' ) if $self->refcount_allocated;
 
 	my $allocations = delete $self->_allocations->{$request} || return;
 
@@ -389,9 +389,9 @@ sub _try_allocating {
 	# if no allocations failed then the blocked set is still empty
 	return unless $blocked->is_null;
 
-	$poe_kernel->refcount_increment( $request->session_id, __PACKAGE__ . "::finalizing_allocation" );
+	$poe_kernel->refcount_increment( $request->session_id, __PACKAGE__ . '::finalizing_allocation' );
 
-	$poe_kernel->refcount_increment( $request->session_id, __PACKAGE__ . "::allocated_requests" ) if $self->refcount_allocated;
+	$poe_kernel->refcount_increment( $request->session_id, __PACKAGE__ . '::allocated_requests' ) if $self->refcount_allocated;
 
 	# the item can now be removed from the queue, and dispatched
 	$self->_remove_from_queue($request);
@@ -411,7 +411,7 @@ sub _try_allocating {
 
 	$request->invoke_callback( pool => $self, %output_params );
 
-	$poe_kernel->refcount_decrement( $request->session_id, __PACKAGE__ . "::finalizing_allocation" );
+	$poe_kernel->refcount_decrement( $request->session_id, __PACKAGE__ . '::finalizing_allocation' );
 
 	return $request;
 }
@@ -448,7 +448,7 @@ based apps.
 			moose => ..., # arbitrary params for Blah type resources
 			elk   => ...,
 		},
-		event => "got_it", # dispatched when both moose and elk can be allocated at the same time
+		event => 'got_it', # dispatched when both moose and elk can be allocated at the same time
 	);
 
 =head1 DESCRIPTION

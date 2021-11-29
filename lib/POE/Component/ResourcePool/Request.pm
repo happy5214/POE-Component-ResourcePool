@@ -8,18 +8,18 @@ use Carp::Clan qr/^(?:POE::Component::ResourcePool|Moose|Class::MOP)/;
 use POE;
 
 has session_id => (
-	is  => "ro",
+	is  => 'ro',
 	default => sub { $poe_kernel->get_active_session->ID },
 );
 
 has event => (
-	isa => "Str",
-	is  => "ro",
+	isa => 'Str',
+	is  => 'ro',
 );
 
 has callback => (
-	isa => "CodeRef|Str",
-	is  => "rw",
+	isa => 'CodeRef|Str',
+	is  => 'rw',
 	lazy_build => 1,
 );
 
@@ -34,7 +34,7 @@ sub _build_callback {
 	my $event = $self->event;
 
 	unless ( defined $event ) {
-		croak "Either 'event' or 'callback' is a required parameter";
+		croak 'Either "event" or "callback" is a required parameter';
 	}
 
 	my $session_id = $self->session_id;
@@ -46,31 +46,31 @@ sub _build_callback {
 }
 
 has params => (
-	isa => "HashRef",
-	is  => "rw",
+	isa => 'HashRef',
+	is  => 'rw',
 	required => 1,
 );
 
 has pool => (
-	isa => "POE::Component::ResourcePool",
-	is  => "ro",
+	isa => 'POE::Component::ResourcePool',
+	is  => 'ro',
 	required => 1,
 );
 
 has dismissed => (
-	isa => "Bool",
-	is  => "rw",
+	isa => 'Bool',
+	is  => 'rw',
 	default  => 0,
 	init_arg => undef,
-	writer   => "_dismissed",
+	writer   => '_dismissed',
 );
 
 has fulfilled => (
-	isa => "Bool",
-	is  => "rw",
+	isa => 'Bool',
+	is  => 'rw',
 	default  => 0,
 	init_arg => undef,
-	writer   => "_fulfilled",
+	writer   => '_fulfilled',
 );
 
 sub canceled {
@@ -79,10 +79,10 @@ sub canceled {
 }
 
 has results => (
-	isa => "HashRef",
-	is  => "rw",
+	isa => 'HashRef',
+	is  => 'rw',
 	init_arg => undef,
-	writer => "_results",
+	writer => '_results',
 );
 
 sub dismiss {
@@ -127,7 +127,7 @@ parameters.
 		},
 
 		# specify what to do when you've got what you want
-		event => "moose",
+		event => 'moose',
 
 	);
 

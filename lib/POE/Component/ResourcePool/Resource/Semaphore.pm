@@ -6,15 +6,15 @@ use Moose;
 with qw(POE::Component::ResourcePool::Resource);
 
 has initial_value => (
-	isa => "Num",
-	is  => "ro",
+	isa => 'Num',
+	is  => 'ro',
 	required => 1,
 );
 
 has value => (
-	isa => "Num",
-	is  => "rw",
-	writer   => "_value",
+	isa => 'Num',
+	is  => 'rw',
+	writer   => '_value',
 	init_arg => undef,
 );
 
@@ -97,7 +97,7 @@ POE::Component::ResourcePool::Resource::Semaphore - numerical semaphore resource
 
 					$pool->request(
 						params => { connections => 1 },
-						event  => "fetch",
+						event  => 'fetch',
 					);
 				},
 				fetch => sub {

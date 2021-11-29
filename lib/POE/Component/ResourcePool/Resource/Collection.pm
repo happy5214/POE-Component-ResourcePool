@@ -6,8 +6,8 @@ use Moose;
 with qw(POE::Component::ResourcePool::Resource);
 
 has values => (
-	isa => "ArrayRef",
-	is  => "rw",
+	isa => 'ArrayRef',
+	is  => 'rw',
 	required => 1,
 );
 

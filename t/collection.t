@@ -11,11 +11,11 @@ my $res  = POE::Component::ResourcePool::Resource::Collection->new( values => [ 
 
 my @got = $res->try_allocating( undef, undef, 2 );
 
-is_deeply( \@got, [ 1, 2 ], "try" );
+is_deeply( \@got, [ 1, 2 ], 'try' );
 
-is_deeply( [ $res->finalize_allocation( undef, undef, @got ) ], [ [ @got ] ], "finalize" );
+is_deeply( [ $res->finalize_allocation( undef, undef, @got ) ], [ [ @got ] ], 'finalize' );
 
-is_deeply( [ $res->try_allocating( undef, undef, 2 ) ], [ ], "try failed" );
+is_deeply( [ $res->try_allocating( undef, undef, 2 ) ], [ ], 'try failed' );
 
-is_deeply( [ $res->try_allocating( undef, undef, 1 ) ], [ 3 ], "try succeeded" );
+is_deeply( [ $res->try_allocating( undef, undef, 1 ) ], [ 3 ], 'try succeeded' );
 
