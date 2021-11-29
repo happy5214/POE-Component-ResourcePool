@@ -377,7 +377,7 @@ sub _try_allocating {
 
 		my $resource = $resources->{$resource_name};
 
-		my @allocation = $resource->try_allocating( $self, $request, $params->{$resource_name} );
+		my @allocation = $resource->try_allocating( $self, $request, $res_params );
 
 		if ( @allocation ) {
 			$allocations{$resource_name} = \@allocation;
