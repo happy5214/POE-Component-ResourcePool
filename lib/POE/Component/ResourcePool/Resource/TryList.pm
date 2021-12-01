@@ -1,7 +1,8 @@
-#!/usr/bin/perl
-
 package POE::Component::ResourcePool::Resource::TryList;
 use Moose;
+
+use Modern::Perl '2020';
+use namespace::autoclean;
 
 with 'POE::Component::ResourcePool::Resource';
 

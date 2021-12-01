@@ -14,8 +14,10 @@ WriteMakefile(
 		'Test::use::ok' => 0,
 		'POE' => 0,
 		'Carp::Clan' => 0,
+		'Modern::Perl' => '1.20200211', # pragmas
 		'Moose' => '0.37', # undef init_arg, initializer
 		'MooseX::POE' => '0.205', # session leaks, aliased role
+		'namespace::autoclean' => '0.29', # import cleanup
 		'Set::Object' => '1.20', # weak sets
 		'Tie::RefHash' => 0,
 		'Tie::RefHash::Weak' => '0.08',

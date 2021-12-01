@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 package POE::Component::ResourcePool;
 use MooseX::POE;
 
@@ -7,6 +5,9 @@ use Carp::Clan qr/^(?:POE::Component::ResourcePool|Moose|Class::MOP)/;
 
 use Tie::RefHash;
 use Tie::RefHash::Weak;
+
+use Modern::Perl '2020';
+use namespace::autoclean;
 
 #use MooseX::Types::Set::Object;
 
@@ -415,8 +416,6 @@ sub _try_allocating {
 
 	return $request;
 }
-
-no MooseX::POE;
 
 __PACKAGE__
 

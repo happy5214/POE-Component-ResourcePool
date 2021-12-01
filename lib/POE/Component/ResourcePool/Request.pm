@@ -1,11 +1,12 @@
-#!/usr/bin/perl
-
 package POE::Component::ResourcePool::Request;
 use Moose;
 
 use Carp::Clan qr/^(?:POE::Component::ResourcePool|Moose|Class::MOP)/;
 
 use POE;
+
+use Modern::Perl '2020';
+use namespace::autoclean;
 
 has session_id => (
 	is  => 'ro',

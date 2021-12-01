@@ -1,9 +1,10 @@
-#!/usr/bin/perl
-
 package POE::Component::ResourcePool::Resource;
 use Moose::Role;
 
 use Set::Object::Weak;
+
+use Modern::Perl '2020';
+use namespace::autoclean;
 
 #use MooseX::Types::Set::Object;
 
