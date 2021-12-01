@@ -49,7 +49,7 @@ has _registered_pools => (
 	}
 );
 
-__PACKAGE__;
+1;
 
 __END__
 

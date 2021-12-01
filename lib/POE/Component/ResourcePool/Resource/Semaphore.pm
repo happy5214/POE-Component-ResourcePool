@@ -56,7 +56,7 @@ sub free_allocation {
 	$self->notify_all_pools;
 }
 
-__PACKAGE__
+1;
 
 __END__
 

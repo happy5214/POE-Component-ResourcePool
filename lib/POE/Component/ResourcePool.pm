@@ -417,7 +417,7 @@ sub _try_allocating {
 	return $request;
 }
 
-__PACKAGE__
+1;
 
 __END__
 

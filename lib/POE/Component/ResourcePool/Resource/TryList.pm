@@ -77,7 +77,7 @@ sub free_allocation {
 	$resource->free_allocation( $pool, $request, @allocation );
 }
 
-__PACKAGE__
+1;
 
 __END__
 

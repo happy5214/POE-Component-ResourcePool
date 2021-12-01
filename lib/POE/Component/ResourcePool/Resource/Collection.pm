@@ -42,7 +42,7 @@ sub free_allocation {
 }
 
 
-__PACKAGE__
+1;
 
 __END__
 

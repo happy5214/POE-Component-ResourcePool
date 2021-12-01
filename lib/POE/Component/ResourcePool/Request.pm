@@ -107,7 +107,7 @@ sub DEMOLISH {
 	$self->dismiss;
 }
 
-__PACKAGE__
+1;
 
 __END__
 
